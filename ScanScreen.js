@@ -36,7 +36,7 @@ getCameraPermissions=async ()=>{
     const scanned = this.state.scanned;
     const buttonState = this.state.buttonState;
 
-    if(buttonState === 'clicked' && hasCameraPermissions){
+    if(buttonState === 'clicked' && hasCameraPermission){
       return (
         <BarCodeScanner
         onBarCodeScanned={scanned ? undefined:this.handleBarcodeScanned}
@@ -47,8 +47,14 @@ getCameraPermissions=async ()=>{
      else if(buttonState === "normal"){
     return (
       <View style={styles.container}>
+        <View>
+            <Image source={require("../assets/barcodeScanner.jpg")}
+              style={{ width: 200, height: 200 }}
+            ></Image>
+            <Text style={{ textAlign: 'center', fontSize: 30 }}>Barcode Scanner</Text>
+          </View>
         <Text style={styles.displayText}>{
-          hasCameraPermissions===true ? this.state.scannedData:'Request Camera Permissions'
+          hasCameraPermission===true ? this.state.scannedData:'Request Camera Permissions'
         }</Text>
         <TouchableOpacity 
         onPress={
